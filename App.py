@@ -20,7 +20,6 @@ class Usuario():
         conn.commit()
         conn.close()
 
-
     def listar(self):
         usuarios = []
         conn = sqlite3.connect('dinamics.db')
