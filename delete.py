@@ -7,7 +7,7 @@ id = 2
 
 cursor.execute("""
 delete from ifight
-where id = ? """, (id,))
+where id = ? """, (id))
 
 conn.commit()
 print("ok")

@@ -1,41 +1,49 @@
 import sqlite3
 
-class Usuario():
-    def __init__(self, nome, email, senha, profissao, sexo, data_nasc):
-        self.nome = nome
-        self.email = email
+conn = sqlite3.connect('ifight.db')
+cursor = conn.cursor()
+
+class usuario():
+    def __init__(self,id,login,senha,nome,nascimento,profissao,publicacaoPublica,publicacaoPrivada):
+        self.id = id
+        self.login = login
         self.senha = senha
+        self.nome = nome
+        self.nascimento = nascimento
         self.profissao = profissao
-        self.sexo = sexo
-        self.data_nasc = data_nasc
+        self.publicacaoPublica = publicacaoPublica
+        self.publicacaoPrivada = publicacaoPrivada
 
     def inserir(self):
-        conn = sqlite3.connect('dinamics.db')
+        conn = sqlite3.connect('ifight.db')
         cursor = conn.cursor()
-        cursor.execute('''
-          INSERT INTO TB_Usuario (nome, email, senha, profissao, sexo, data_nasc)
-          VALUES (self.nome, self.email, self.senha, self.profissao,
-           self.sexo, self.data_nasc)
-        ''')
+        cursor.execute("""
+        insert into tb_ususario(login,senha,nome,nascimento,profissao,publicacaoPublica,publicacaoPrivada)
+        values(self.login,self.senha,self.nome,self.nascimento,self.profissao,self.publicacaoPublica,self.publicacaoPrivada)
+        """)
         conn.commit()
         conn.close()
 
     def listar(self):
-        usuarios = []
-        conn = sqlite3.connect('dinamics.db')
+        usuario = []
+        conn = sqlite3.connect('ifight.db')
+
         cursor = conn.cursor()
+
         cursor.execute("""
-        SELECT * FROM TB_Usuario;
+        select * tb_ususario;
         """)
         for linha in cursor.fetchall():
-            nome = linha[1]
-            email = linha[2]
-            senha = linha[3]
-            profissao = linha[4]
-            sexo = linha[5]
-            data_nasc = linha[6]
-            usuario = Usuario(nome, email, senha, profissao, sexo, data_nasc)
-            usuarios.append(usuario)
+
+            login = linha[1]
+            senha = linha[2]
+            nome = linha[3]
+            nascimento = linha[4]
+            profissao = linha[5]
+            publicacaoPublica = linha[6]
+            publicacaoPrivada = linha[7]
+            usuario = usuario(login,senha,nome,nascimento,profissao,publicacaoPublica,publicacaoPrivada)
+            usuario.append(usuario)
 
         conn.close()
 
@@ -44,8 +52,8 @@ class Usuario():
     def deletar(self, id):
         pass
 
-    def atualizar(self, nome, email, senha, profissao, sexo, data_nasc):
-        pass
+
+print("Menu\n 1 - Criar rede social\n 2 - Inserir Usuário\n 3 - Adicionar Amigo\n 4 - Enviar Mensagem")
 
 conn = sqlite3.connect('ifight.db')
 

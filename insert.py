@@ -21,5 +21,3 @@ conn.commit()
 print("ok")
 
 conn.close()
-
-
