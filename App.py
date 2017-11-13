@@ -3,10 +3,6 @@ import sqlite3
 conn = sqlite3.connect('ifight.db')
 cursor = conn.cursor()
 
-conn = sqlite3.connect('ifight.db')
-
-cursor = conn.cursor()
-
 cursor.execute ("""
     create table usuario (
         id integer not null primary key autoincrement,
