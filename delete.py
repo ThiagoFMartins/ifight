@@ -3,7 +3,7 @@ import sqlite3
 conn = sqlite3.connect('ifight.db')
 
 cursor = conn.cursor()
-id = 2
+id = id.self
 
 cursor.execute("""
 delete from ifight
