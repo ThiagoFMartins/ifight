@@ -1,4 +1,9 @@
-class usuario():
+import sqlite3
+
+conn = sqlite3.connect('ifight.db')
+cursor = conn.cursor()
+
+class amigo():
     def __init__(self,id,login,senha,nome,nascimento,profissao,genero,mensagem):
         self.id = id
         self.login = login
@@ -13,20 +18,20 @@ class usuario():
         conn = sqlite3.connect('ifight.db')
         cursor = conn.cursor()
         cursor.execute("""
-        insert into tb_ususario(login,senha,nome,nascimento,profissao,genero,mensagem)
+        insert into tb_amigo(login,senha,nome,nascimento,profissao,genero,mensagem)
         values(self.login,self.senha,self.nome,self.nascimento,self.profissao,self.genero,self.mensagem)
         """)
         conn.commit()
         conn.close()
 
     def listar(self):
-        usuario = []
-        conn = sqlite3.connect('ifight.db')
+        amigos = []
 
+        conn = sqlite3.connect('ifight.db')
         cursor = conn.cursor()
 
         cursor.execute("""
-        select * tb_ususario;
+        select * tb_amigo;
         """)
         for linha in cursor.fetchall():
 
@@ -37,19 +42,19 @@ class usuario():
             profissao = linha[5]
             genero = linha[6]
             mensagem = linha[7]
-            usuario = usuario(login,senha,nome,nascimento,profissao,genero,mensagem)
-            usuario.append(usuario)
+            amigo = amigo(login,senha,nome,nascimento,profissao,genero,mensagem)
+            amigo.append(amigo)
 
         conn.close()
 
-        return usuarios
+        return amigos
 
     def deletar(self, id):
         conn = sqlite3.connect("ifight.db")
         cursor = conn.cursor()
 
         cursor.execute(""""
-                  DELETE FROM tb_usuario
+                  DELETE FROM tb_amigo
                   WHERE id =?
               """, id)
 

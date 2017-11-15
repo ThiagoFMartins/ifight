@@ -1,10 +1,54 @@
 import sqlite3
+import datetime
 
 conn = sqlite3.connect('ifight.db')
 cursor = conn.cursor()
 
 cursor.execute ("""
-    create table usuario (
+    create table usuario 
+    (
+        id integer not null primary key autoincrement,
+        login varchar(100),
+        senha varchar (50),
+        nome varchar(150) not null,
+        nascimento date,
+        profissao varchar (50),
+        genero varchar(15) ,
+        mensagem text
+    )
+""")
+
+conn.close()
+
+conn = sqlite3.connect('ifight.db')
+
+cursor = conn.cursor()
+
+u_login = input("login:")
+u_senha = input("senha:")
+u_nome = input("nome:")
+u_nascimento = input("nascimeno (aaaa/mm/dd):")
+u_profissao = input("profissao:")
+u_genero = input("Gênero:")
+
+cursor.execute\
+    ("""
+     INSERT INTO usuario (login, senha, nome, nascimento, profissao,genero)
+     VALUES (?, ?, ?, ?, ?, ?)
+    """, (u_login,u_senha,u_nome,u_nascimento,u_profissao,u_genero))
+
+conn.commit()
+
+print("ok")
+
+conn.close()
+
+conn = sqlite3.connect('ifight.db')
+cursor = conn.cursor()
+
+cursor.execute ("""
+    create table amigo 
+    (
         id integer not null primary key autoincrement,
         login varchar(100),
         senha varchar (50),
@@ -18,15 +62,19 @@ cursor.execute ("""
 
 cursor.execute("""
     create table mensagem
-        (mensagemPublica text,
-         mensagemPrivada text
+    (
+        id integer not null primary key autoincrement,
+         conteudoMensagem text,
+         visibilidade boolean
     )
 """)
 
 cursor.execute\
     ("""
     create table timeLine
-        (mensagemPublica text,
+        (
+         id integer not null primary key autoincrement,
+         mensagemPublica text,
          mensagemPrivada text
         )
 """)
@@ -34,8 +82,10 @@ cursor.execute\
 cursor.execute\
     ("""
   create table batePapo
-   (mensagemPublica text,
-    mensagemPrivada text
+   (
+        id integer not null primary key autoincrement,
+        mensagemPublica text,
+        mensagemPrivada text
     )
 """)
 
@@ -51,9 +101,5 @@ elif op_escolhida == 3:
     print("Em produção")
 elif op_escolhida == 4:
     print("Em produção")
-    '''try:
-        if op_escolhida == (op_escolhida*1):
-            print("Número inválido")
-    except ValueError:
-        print("Tudo rasuavelmente bem")'''
+
 conn.close()
