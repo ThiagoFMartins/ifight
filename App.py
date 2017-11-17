@@ -74,8 +74,8 @@ cursor.execute\
     create table timeLine
         (
          id integer not null primary key autoincrement,
-         mensagemPublica text,
-         mensagemPrivada text
+         publicacaoPublica text,
+         publicacaoPrivada text
         )
 """)
 
@@ -84,8 +84,8 @@ cursor.execute\
   create table batePapo
    (
         id integer not null primary key autoincrement,
-        mensagemPublica text,
-        mensagemPrivada text
+        conteudoMensagem text,
+         visibilidade boolean
     )
 """)
 
