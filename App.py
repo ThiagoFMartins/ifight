@@ -7,6 +7,9 @@ def criarRedeSocial():
 def exibirMenu():
     
     print("Menu\n 1 - Escolher nome da rede social\n 0 - Sair")
+
+def adicionarUsuario():
+    pass
     
 def main( args = [] ):
     
