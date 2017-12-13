@@ -17,7 +17,7 @@ def adicionarUsuario():
     cursor = conn.cursor()
     DB_NAME = 'ifight'
     tables = {}
-    tables ['ifight'] = ('''
+    create table ['ifight'] = ('''
         id integer not null primary key autoincrement,
         login varchar(100),
         senha varchar(50), 
