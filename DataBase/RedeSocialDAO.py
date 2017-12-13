@@ -4,6 +4,13 @@ from DataBase.configDB import config
 
 class RedeSocial():
 
+    def criarRedeSocial():
+        nome = str(input("Nome da Rede Social: "))
+
+    def exibirMenu():
+
+        print("Menu\n 1 - Escolher nome da rede social\n 0 - Sair")
+
     def inserirRedeSocial(redeSocial):
 
         idRedeSocial = 0
