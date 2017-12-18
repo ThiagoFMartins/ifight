@@ -1,7 +1,7 @@
 config = {
   'user': 'root',
   'password': 'ifpbinfo',
-  'host': '10.0.0.121',
-  'database': 'ifightdb',
+  'host': '127.0.0.1',
+  'database': 'ifight',
   'raise_on_warnings': True
 }

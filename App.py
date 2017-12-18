@@ -1,24 +1,23 @@
 import mysql.connector
-from Model.usuario import usuario
-from Model.RedeSocial import RedeSocial
-from DataBase.configDB import config
+from DataBase.configDB import *
 
+conn = mysql.connector.connect(**config)
+cursor = conn.cursor()
 
 def criarRedeSocial():
     nome = str(input("Nome da Rede Social: "))
-
+    print("Rede Social %s criada com sucesso!"%nome)
 
 def exibirMenu():
-    print("Menu\n 0 - Sair\n 1 - Escolher nome da rede social\n 2 - Criar Usuário")
-
+    print(""""Menu\n 
+            1 - Criar rede social\n 
+            2 - Criar Usuário\n
+            0 - Sair\n """)
 
 def adicionarUsuario():
-    conn = mysql.connector.connect(**config)
-    cursor = conn.cursor()
-    DB_NAME = 'ifight'
-    tables = {}
-    create table ['ifight'] = ('''
-        id integer not null primary key autoincrement,
+
+    cursor.execute('''CREATE TABLE ifight(
+        id integer primary key autoincrement,
         login varchar(100),
         senha varchar(50), 
         nome varchar(150) not null, 
@@ -26,17 +25,16 @@ def adicionarUsuario():
         profissao varchar(50), 
         genero varchar(15), 
         mensagem text
-    ''')
+    );'''
+                   )
 
-    cursor = conn.cursor()
     a_login = input("login:")
     a_senha = input("senha:")
     a_nome = input("nome:")
     a_nascimento = input("nascimeno (aaaa/mm/dd):")
     a_profissao = input("profissao:")
     a_genero = input("Gênero:")
-    cursor.execute \
-        ("""
+    cursor.execute ("""
          INSERT INTO ifight (login, senha, nome, nascimento, profissao,genero)
          VALUES (?, ?, ?, ?, ?, ?)
         """, ( a_login, a_senha, a_nome, a_nascimento, a_profissao,a_genero))
@@ -44,7 +42,7 @@ def adicionarUsuario():
 def main(args=[]):
     continuar = True
 
-    while continuar:
+    while (continuar):
 
         exibirMenu()
 
@@ -52,6 +50,7 @@ def main(args=[]):
 
             op_escolhida = int(input("Escolha uma das opções: "))
             if op_escolhida == 0:
+                print("Saindo...")
                 continuar = False
             elif op_escolhida == 1:
                 criarRedeSocial()
